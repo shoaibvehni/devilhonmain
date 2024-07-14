@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import './ChatPage.css'; // Make sure to import the CSS file
 
@@ -11,13 +10,12 @@ function ChatPage() {
     const [userInput, setUserInput] = useState('');
     const [devilTyping, setDevilTyping] = useState('');
     const [showBlastMessage, setShowBlastMessage] = useState(false);
-    //const navigate = useNavigate();
 
     useEffect(() => {
         const fetchMessages = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/messages');
-                setMessages(response.data);
+                setMessages(response.data.length > 0 ? [response.data[response.data.length - 1]] : []);
             } catch (error) {
                 console.error('Error fetching messages:', error);
             }
@@ -109,20 +107,10 @@ function ChatPage() {
                     placeholder="Type your question here"
                     required
                 />
-                <button type="submit" onClick={handleBlastEffect}>Send</button>
+                <button type="submit">Send</button>
             </form>
         </div>
     );
 }
 
 export default ChatPage;
-
-function handleBlastEffect() {
-    const blastMessage = document.createElement('div');
-    blastMessage.className = 'message-blast';
-    blastMessage.innerText = 'The devil is reading your words...';
-    document.body.appendChild(blastMessage);
-    setTimeout(() => {
-        blastMessage.remove();
-    }, 1000);
-}

@@ -2,7 +2,7 @@ body {
   background-color: #0a0a0a;
   color: #00ff00;
   font-family: 'Courier New', Courier, monospace;
-  overflow: hidden;
+  overflow-y: scroll;  /* Ensuring the body can scroll when content overflows */
 }
 
 .chat-container {
@@ -21,7 +21,7 @@ h1 {
 .chat-box {
   background-color: #121212;
   border: 2px solid #00ff00;
-  padding: 10px;
+  padding: 20px;
   max-height: 400px;
   overflow-y: auto;
   margin-bottom: 20px;
@@ -34,14 +34,20 @@ h1 {
   padding: 10px;
   border-left: 2px solid #00ff00;
   animation: messageFadeIn 1s ease-in-out;
+  word-wrap: break-word;
+  text-align: left;
+  max-width: 100%;  /* Ensuring messages do not overflow the chat container */
+  white-space: pre-wrap; /* Ensures long messages break into multiple lines */
 }
 
 .chat-message.user {
   color: #00ff00;
+  border-color: #00ff00;
 }
 
 .chat-message.devil {
   color: #ff0000;
+  border-color: #ff0000;
 }
 
 .input-form {
