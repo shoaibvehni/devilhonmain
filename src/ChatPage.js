@@ -11,7 +11,7 @@ function ChatPage() {
     const [userInput, setUserInput] = useState('');
     const [devilTyping, setDevilTyping] = useState('');
     const [showBlastMessage, setShowBlastMessage] = useState(false);
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     useEffect(() => {
         const fetchMessages = async () => {
